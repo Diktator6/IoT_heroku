@@ -1,0 +1,136 @@
+DELETE FROM "internetOfThings_sharing";
+DELETE FROM "internetOfThings_xdevice";
+DELETE FROM "internetOfThings_system";
+DELETE FROM "internetOfThings_user";
+
+
+-- Users
+
+-- Inserting user with pk 1
+INSERT INTO "internetOfThings_user" (id, username, password, first_name, last_name, sex, is_admin, birth_date)
+VALUES (1, 'admin', 'pbkdf2_sha256$600000$hfOd1urYZcK72nSnChsNDE$/rgAbUFCWrQM7Lqa+4+xkIFUSYsycorM+jDQSsG8EfM=', 'Petr', 'Novak', 'male', true, '1995-03-15');
+
+-- Inserting user with pk 2
+INSERT INTO "internetOfThings_user" (id, username, password, first_name, last_name, sex, is_admin, birth_date)
+VALUES (2, 'user2', 'pbkdf2_sha256$600000$wLmk8FEsOzdBqo46TIy3tX$SqDRPMZJQ9pDmN0YZLgXEzyt/e4Op+U1/fXYX2mKn+s=', 'Pavel', 'Dvořák', 'male', false, '1990-04-15');
+
+-- Inserting user with pk 3
+INSERT INTO "internetOfThings_user" (id, username, password, first_name, last_name, sex, is_admin, birth_date)
+VALUES (3, 'user3', 'pbkdf2_sha256$600000$wLmk8FEsOzdBqo46TIy3tX$SqDRPMZJQ9pDmN0YZLgXEzyt/e4Op+U1/fXYX2mKn+s=', 'Anežka', 'Přemyslovna', 'female', false, '1999-05-10');
+
+-- Inserting user with pk 4
+INSERT INTO "internetOfThings_user" (id, username, password, first_name, last_name, sex, is_admin, birth_date)
+VALUES (4, 'user4', 'pbkdf2_sha256$600000$wLmk8FEsOzdBqo46TIy3tX$SqDRPMZJQ9pDmN0YZLgXEzyt/e4Op+U1/fXYX2mKn+s=', 'Anežka', 'Přemyslovna', 'female', false, '1999-05-10');
+
+
+-- Models
+
+-- admin Models
+
+-- Inserting system with pk 1
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (1, 'System 1.1', '2023-11-01T15:30:00Z', 1, 'This is description of System 1.1');
+
+-- Inserting system with pk 2
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (2, 'System 1.2', '2023-11-01T15:30:00Z', 1, 'This is description of System 1.2');
+
+-- Inserting system with pk 3
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (3, 'System 1.3', '2023-11-01T15:30:00Z', 1, 'This is description of System 1.3');
+
+-- Inserting system with pk 4
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (4, 'System 1.4', '2023-11-01T15:30:00Z', 1, 'This is description of System 1.4');
+
+-- user2 Models
+
+-- Inserting system with pk 5
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (5, 'System 2.1', '2023-11-01T15:30:00Z', 2, 'This is description of System 2.1');
+
+-- Inserting system with pk 6
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (6, 'System 2.2', '2023-11-01T15:30:00Z', 2, 'This is description of System 2.2');
+
+-- Inserting system with pk 7
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (7, 'System 2.3', '2023-11-01T15:30:00Z', 2, 'This is description of System 2.3');
+
+-- Inserting system with pk 8
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (8, 'System 2.4', '2023-11-01T15:30:00Z', 2, 'This is description of System 2.4');
+
+-- user3 Models
+
+-- Inserting system with pk 9
+INSERT INTO "internetOfThings_system" (id, system_name, date_created, owner_id, description)
+VALUES (9, 'System 3.1', '2023-11-01T15:30:00Z', 3, 'This is description of System 3.1');
+
+
+-- Sharings
+
+-- user1 Sharings
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (1, 1, 5, 'waiting', 'user_to_system');
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (2, 1, 6, 'waiting', 'user_to_system');
+
+-- user2 Sharings
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (3, 2, 1, 'accepted', 'user_to_system');
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (4, 2, 2, 'accepted', 'user_to_system');
+
+-- user3 Sharings
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (5, 3, 1, 'declined', 'user_to_system');
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (6, 3, 2, 'declined', 'user_to_system');
+
+-- user4 Sharings
+
+INSERT INTO "internetOfThings_sharing" (id, user_id, system_id, state, share_type)
+VALUES (7, 4, 1, 'waiting', 'user_to_system');
+
+
+-- Devices
+
+-- system 1.1
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (1, 'Teploměr 1', 'Description.', 1, 23);
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (2, 'Vlhkoměr 1', 'Description.', 1, 60);
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (3, 'CO2 Měřič', 'Description.', 1, 6);
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (4, 'Požární hlásič', 'Description.', 1, 0);
+
+-- system 1.2
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (5, 'Dev 13', 'Description.', 2, 34);
+
+-- system 2.1
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (6, 'Dev 14', 'Description.', 5, 36);
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (7, 'Dev 20', 'Description.', 5, 40);
+
+-- system 2.2
+
+INSERT INTO "internetOfThings_xdevice" (id, name, description, system_id, value)
+VALUES (8, 'Dev 30', 'Description.',6 , 11);
+
